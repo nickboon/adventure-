@@ -223,7 +223,7 @@
 					playerActions: [createContinueAction()],
 				},
 				readBook: {
-					description: 'The book tells you you must go outside to win.',
+					description: 'The book tells you that you must go outside to win.',
 					playerActions: [createContinueAction()],
 				},
 				outside: {
@@ -233,9 +233,8 @@
 				},
 			};
 
-			// initialize up state tracking variables
-			startingGameState = 'kitchen';
 			// load starting state
+			startingGameState = 'kitchen';
 			ChangeGameStateTo(startingGameState);
 		</script>
 	</body>
