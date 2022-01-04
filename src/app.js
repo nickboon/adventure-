@@ -183,7 +183,7 @@
 	// Try adding new states to expand the game!
 
 	// gameStates is a JavaScript object - you write them by defining variables inside curly braces.
-	// these variables don't need a "let" keyword but can reassign them.
+	// these variables don't need a "let" keyword but you can reassign them.
 	// they are regarded as a special type of variable "belonging" to the object containing them
 	// and are referred to as "properties" of that object.
 	// Here is an example object:
