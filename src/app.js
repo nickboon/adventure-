@@ -1,28 +1,34 @@
 (function () {
 	// This is the JavaScript code - without this we couldn't construct the moving parts of the game.
-
-	// get a reference to the html elements on the page so the JavaScript can use them.
+	// Lines preceeded by "//" are called comments.. they are not read as code when the program runs.
+	
+	// Here we get references to the HTML elements on the page so the JavaScript can use them.
+	// If you look in index.html you will see these elements wrapped in angle brackets and with a specified id
+	// e.g. <h1 id="currentLocationHeader"></h1> -- this is an element used to display an important header text.
+	// When the game starts this is "Kitchen", but as you move around the game the text is replaced (see ChangeGameStateTo function below).
 	const locationHeader = document.getElementById('currentLocationHeader');
 	const currentStateSection = document.getElementById('currentStateSection');
 	const playerActionsSection = document.getElementById('playerActionsSection');
 	const bagSection = document.getElementById('bagSection');
 
-	// define some variables to keep track of the game state
-	// variables STORE some kind of data in memory.. so they hava a key(name/identifier).
-	// once they are declared, you can assign a value you to them. When you see "let" or "const",
-	// it means a variable a varaible has been decared. Const is short for "constant" - once assigned you can't change the value it holds. You can with a variable declared with 'let'.
+	// We need to define some variables to keep track of the game state.
+	// Variables STORE some kind of data in memory.. so they have a name or identifier by which you may retrieve the associated data.
+	// Once they are declared, you can assign a value to them. 
+	// When you see "let" or "const", it means a variable is being declared.
+	// Const is short for "constant" - once assigned you can't change the value it holds (So, technically, it is not variable... I might be being imprecise here).
+	// You can change the value if a variable is declared with 'let'.
 	// These once are going to change as the game progresses, so I used 'let':
 	let startingGameState = '';
 	let currentGameState = '';
 	let currentLocation = '';
 
-	// functions DO things: e.g. perform calculations, save a value in a variable for later, or create more functions.
+	// Functions DO things: e.g. Perform calculations, save a value in a variable for later, or create more functions.
 	// They can take in input (between the braces after the function name) and can optionaly return output.
-	// Funtions look like this:
+	// Function declarations or definitions look like this:
 	//
 	// function addOneTo(input){ return input + 1; }
 	//
-	// once you have defined a function, you can execute (or "call", or "invoke") it like this, if it has a name:
+	// Once you have defined a function, you can execute (or "call", or "invoke") it like this, with it's name and the input you have chosen in brackets:
 	//
 	// addOneTo(4);
 
@@ -62,9 +68,9 @@
 		return createPlayerAction('Start again', goToStartingGameState);
 	}
 
-	// create dropdown lists of options to add to the page
-	// an option has a value (the hidden value that the game uses)
-	// and some text which is what the player sees in the dropdown, e.g "Go south".
+	// Here we create dropdown lists of options to add to the page.
+	// An option has a value, which is not visible on the page though available to the game code,
+	// and some text, which is what the player sees in the dropdown, e.g "Go south".
 	function appendOption(selector, text, getValue) {
 		const option = document.createElement('option');
 		option.text = text;
@@ -73,15 +79,14 @@
 	}
 
 	function createDropdownIn(section, placeholder) {
-		// a select HTML element holds the dropdown options
-		// we create a new one here:
+		// A select HTML element holds the dropdown options.
+		// We create a new one here:
 		const dropdown = document.createElement('select');
-		// scroll up to the previous funtion see the definition of "appendOption" which is called in the next line
+		// Scroll up to the previous function see the definition of "appendOption" which is called in the next line
 		appendOption(dropdown, placeholder, goToCurrentGameState);
 
-		// when the player selects a new option a change event triggers whatever functions
-		// we assign here .. in this case ChangeGameState.
-		// The value of the option (storedin event.target.value) is the key to the next game state.
+		// When the player selects a new option, a change event triggers whatever functions we assign here .. in this case ChangeGameState.
+		// The value of the option (stored in event.target.value) is the key for the next game state.
 		dropdown.addEventListener('change', function (event) {
 			ChangeGameStateTo(event.target.value);
 		});
@@ -93,15 +98,15 @@
 	}
 
 	function isBagEmpty() {
-		// if it is it has a string of text saying "No Items" - this is defined in the index.html file
-		// when you see "===" the code is checking if the two operands either sideare equal,
-		// rather than assigning a value to a variable
+		// If the bag is empty it has a string of text saying "No Items" - you can see this defined in the index.html file
+		// When you see "===" the code is checking if the two operands either sideare equal,
+		// rather than assigning a value to a variable.
 		return bagSection.firstChild.nodeType === Node.TEXT_NODE;
 	}
 
 	function addToBag(action) {
 		let bagSectionDropdown = bagSection.firstChild;
-		// if blocks are used to run code only if the expression in the barckets is true,
+		// If blocks are used to run code only if the expression in the brackets is true,
 		// otherwise it skips it.
 		if (isBagEmpty()) {
 			bagSection.innerHTML = '';
@@ -120,7 +125,7 @@
 			return; // skip the rest of the code in the function
 		}
 
-		// the placeholder is the thing describing the dropdown: e.g "Select an item to use:" defined above.
+		// The placeholder is the thing describing the dropdown: e.g "Select an item to use:" defined above.
 		var placeholder = bagSection.firstChild.firstChild;
 		// if you click it you shouldn't go anywhere so it point to the current state
 		placeholder.value = currentGameState;
@@ -143,10 +148,10 @@
 		});
 	}
 
-	// THIS IS THE MAIN FUNCTION IN THE GAME
-	// it loads a new state in response to player's choice
-	// selecting an option in the dropdown gives us a state key.
-	// using the key we get the state from the gameStates variable and update the
+	// THIS IS THE MAIN FUNCTION IN THE GAME.
+	// It loads a new state in response to player's choice 
+	// Selecting an option in the dropdown gives us a state key.
+	// Using the key we get the state from the gameStates variable and update the
 	// contents of the html elements on the page (This is what is defined in index.html)
 	function ChangeGameStateTo(stateKey) {
 		const newGameState = gameStates[stateKey];
@@ -186,8 +191,8 @@
 	// Try adding new states to expand the game!
 
 	// gameStates is a JavaScript object - you write them by defining variables inside curly braces.
-	// these variables don't need a "let" keyword but you can reassign them.
-	// they are regarded as a special type of variable "belonging" to the object containing them
+	// These variables don't need a "let" keyword but you can reassign them.
+	// They are regarded as a special type of variable "belonging" to the object containing them
 	// and are referred to as "properties" of that object.
 	// Here is an example object:
 	//
@@ -197,7 +202,7 @@
 	//     age: 44
 	// }
 	//
-	// in objects the properties are assigned with colons (:) rather than the equals sign (=)
+	// In objects the properties are assigned with colons (:) rather than the equals sign (=)
 	// This gameStates object holds many other objects, representing all the states the game can be in.
 	const gameStates = {
 		kitchen: {
@@ -277,3 +282,6 @@
 	startingGameState = 'kitchen';
 	ChangeGameStateTo(startingGameState);
 })();
+
+// For a more exhaustive definition of JavaScript, I can recommend this book:
+// https://cdn.tc-library.org/Rhizr/Files/daaz74mzphKfnHsen/files/JavaScript-%20The%20Good%20Parts.pdf
