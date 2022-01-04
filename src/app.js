@@ -256,12 +256,12 @@
 			playerActions: [
 				createPlayerAction('Go north', goTo('kitchen')),
 				createPlayerAction('Go south', goTo('outside')),
-				createPlayerAction('Go to sleep', () =>
+				createPlayerAction('Go to sleep', function () {
 					// this is called a ternary expression
 					// if player.hasDrunkCoffee is true 'can't sleep' will be returned,
 					// if it is false 'sleeping will'
-					player.hasDrunkCoffee ? 'cantSleep' : 'sleeping'
-				),
+					player.hasDrunkCoffee ? 'cantSleep' : 'sleeping';
+				}),
 				createPlayerAction('Read book', goTo('readBook')),
 			],
 		},
