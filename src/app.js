@@ -54,10 +54,6 @@
 		};
 	}
 
-	function createPlaceholder(description) {
-		return createPlayerAction(description, goToCurrentGameState);
-	}
-
 	function createContinueAction() {
 		return createPlayerAction('Continue', goToCurrentLocation);
 	}
@@ -77,13 +73,20 @@
 	}
 
 	function createDropdownIn(section, placeholder) {
-		// a select element holds the dropdown options
+		// a select HTML element holds the dropdown options
+		// we create a new one here:
 		const dropdown = document.createElement('select');
 		// scroll up to the previous funtion see the definition of "appendOption" which is called in the next line
 		appendOption(dropdown, placeholder, goToCurrentGameState);
+
+		// when the player selects a new option a change event triggers whatever functions
+		// we assign here .. in this case ChangeGameState.
+		// The value of the option (storedin event.target.value) is the key to the next game state.
 		dropdown.addEventListener('change', function (event) {
 			ChangeGameStateTo(event.target.value);
 		});
+
+		// add the newly created drop down to the section element in the HTML in index.html
 		section.append(dropdown);
 
 		return dropdown;
@@ -117,7 +120,7 @@
 			return; // skip the rest of the code in the function
 		}
 
-		// the place holder is the thing describing the dropdown: e.g "Select an item to use:" defined above.
+		// the placeholder is the thing describing the dropdown: e.g "Select an item to use:" defined above.
 		var placeholder = bagSection.firstChild.firstChild;
 		// if you click it you shouldn't go anywhere so it point to the current state
 		placeholder.value = currentGameState;
