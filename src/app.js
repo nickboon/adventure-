@@ -17,7 +17,7 @@
 	// When you see "let" or "const", it means a variable is being declared.
 	// Const is short for "constant" - once assigned you can't change the value it holds (So, technically, it is not variable... I might be being imprecise here).
 	// You can change the value if a variable is declared with 'let'.
-	// These once are going to change as the game progresses, so I used 'let':
+	// These ones are going to change as the game progresses, so I used 'let':
 	let startingGameState = '';
 	let currentGameState = '';
 	let currentLocation = '';
