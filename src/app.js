@@ -231,7 +231,7 @@
 			playerActions: [createContinueAction()],
 			gameActions: [
 				function () {
-					return (player.hasDrunkCoffee = true);
+					player.hasDrunkCoffee = true;
 				},
 			],
 		},
