@@ -3,7 +3,7 @@
 This is a basic text based game built in a webpage.
 
 1. Click the green "Code" button and choose "Download ZIP"
-2. Go to your downloadsfolder
+2. Go to the downloads folder on your computer.
 3. You should be able to right click and extract the files
 4. Everything is in the src (source code) folder
 5. Open the game by clicking and opening index.html
