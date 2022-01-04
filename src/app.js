@@ -1,7 +1,7 @@
 (function () {
 	// This is the JavaScript code - without this we couldn't construct the moving parts of the game.
 	// Lines preceeded by "//" are called comments.. they are not read as code when the program runs.
-	
+
 	// Here we get references to the HTML elements on the page so the JavaScript can use them.
 	// If you look in index.html you will see these elements wrapped in angle brackets and with a specified id
 	// e.g. <h1 id="currentLocationHeader"></h1> -- this is an element used to display an important header text.
@@ -13,7 +13,7 @@
 
 	// We need to define some variables to keep track of the game state.
 	// Variables STORE some kind of data in memory.. so they have a name or identifier by which you may retrieve the associated data.
-	// Once they are declared, you can assign a value to them. 
+	// Once they are declared, you can assign a value to them.
 	// When you see "let" or "const", it means a variable is being declared.
 	// Const is short for "constant" - once assigned you can't change the value it holds (So, technically, it is not variable... I might be being imprecise here).
 	// You can change the value if a variable is declared with 'let'.
@@ -149,7 +149,7 @@
 	}
 
 	// THIS IS THE MAIN FUNCTION IN THE GAME.
-	// It loads a new state in response to player's choice 
+	// It loads a new state in response to player's choice
 	// Selecting an option in the dropdown gives us a state key.
 	// Using the key we get the state from the gameStates variable and update the
 	// contents of the html elements on the page (This is what is defined in index.html)
@@ -194,7 +194,7 @@
 	// You have to give each game state a description, which will be displayed to the player,
 	// and the game state it will move on to, which can be selected by the player via a dropdown menu.
 	// Game actions are things the game will do when it moves to that state. This is not something the player can choose.
-	
+
 	// Try defining and adding new states to expand the game! You will have to point to them from existing states if the player is to visit them.
 
 	// gameStates is a JavaScript object - you write JavaScript objects by defining variables inside curly braces.
@@ -292,3 +292,7 @@
 
 // For a more exhaustive definition of JavaScript, I can recommend this book:
 // https://cdn.tc-library.org/Rhizr/Files/daaz74mzphKfnHsen/files/JavaScript-%20The%20Good%20Parts.pdf
+
+// There is a short YouTube introduction to JavaScript here: https://www.youtube.com/watch?v=Ukg_U3CnJWI
+// and a longer one here https://www.youtube.com/watch?v=W6NZfCO5SIk
+// there are hundreds. There will be tutorials explaining HTML and css (style rules) also.
