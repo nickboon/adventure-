@@ -18,16 +18,19 @@
 
 	// functions DO things: e.g. perform calculations, save a value in a variable for later, or create more functions.
 	// They can take in input (between the braces after the function name) and can optionaly return output.
-	// Funtions can look like this:
+	// Funtions look like this:
+	//
 	// function addOneTo(input){ return input + 1; }
-	// or a shorhand way is to do this, if you don't need to give it a name:
-	// (input) => input + 1
-	// once you have defined a function, you can execute (or call) it like this, if it has a name:
+	//
+	// once you have defined a function, you can execute (or "call", or "invoke") it like this, if it has a name:
+	//
 	// addOneTo(4);
 
 	// a function to pass the required state when constructing options for the player
 	function goTo(state) {
-		return () => state;
+		return function () {
+			return state;
+		};
 	}
 
 	// more helper functions to supply various states you might need to jump to
@@ -78,9 +81,9 @@
 		const dropdown = document.createElement('select');
 		// scroll up to the previous funtion see the definition of "appendOption" which is called in the next line
 		appendOption(dropdown, placeholder, goToCurrentGameState);
-		dropdown.addEventListener('change', (e) =>
-			ChangeGameStateTo(e.target.value)
-		);
+		dropdown.addEventListener('change', function (event) {
+			ChangeGameStateTo(event.target.value);
+		});
 		section.append(dropdown);
 
 		return dropdown;
@@ -128,13 +131,13 @@
 			playerActionsSection,
 			'Choose an action: '
 		);
-		actions.forEach((action) =>
+		actions.forEach(function (action) {
 			appendOption(
 				playerActionDropdown,
 				action.description,
 				action.getNextState
-			)
-		);
+			);
+		});
 	}
 
 	// THIS IS THE MAIN FUNCTION IN THE GAME
@@ -172,8 +175,8 @@
 	}
 
 	// states
-	const player = {}; // This is an empty object - we can add properties describing player data here, at a later time -
-	// see hasDrunkCoffee
+	const player = {}; // This is an empty object - we can add properties describing player data here,
+	// at a later time - see hasDrunkCoffee
 
 	// These are all the locations and events that happen in the game.
 	// Some are locations and so have a location name, which allows the game to kep track of where the player is. If it doesn't have a location name, it's some sort of event that could potentially happen anywhere. Player actions are the options the player is presented with in order to progress in the game. You have to give it a description and the game state it will move on to. Game actions are things the game will do when it moves to that state. This is not something the player can choose.
@@ -218,14 +221,19 @@
 			playerActions: [createContinueAction()],
 			// all the functions in the gameActions array will be called by the ChangeGameStateTo function above
 			gameActions: [
-				() =>
-					addToBag(createPlayerAction('Mug Of Coffee', goTo('drinkCoffee'))),
+				function () {
+					addToBag(createPlayerAction('Mug Of Coffee', goTo('drinkCoffee')));
+				},
 			],
 		},
 		drinkCoffee: {
 			description: 'The Coffee is delicious.',
 			playerActions: [createContinueAction()],
-			gameActions: [() => (player.hasDrunkCoffee = true)],
+			gameActions: [
+				function () {
+					return (player.hasDrunkCoffee = true);
+				},
+			],
 		},
 		bedroom: {
 			location: 'Bedroom',
