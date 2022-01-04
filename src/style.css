@@ -1,0 +1,15 @@
+body {
+	text-align: center;
+	padding: 1em;
+	font-family: Harrington, Georgia, 'Times New Roman', Times, serif;
+}
+h1,
+section {
+	margin-bottom: 1em;
+}
+.panel {
+	padding: 1em;
+	outline: 1px solid black;
+	width: 80%;
+	margin: 1em auto;
+}
