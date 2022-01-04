@@ -186,11 +186,18 @@
 	const player = {}; // This is an empty object - we can add properties describing player data here,
 	// at a later time - see hasDrunkCoffee
 
-	// These are all the locations and events that happen in the game.
-	// Some are locations and so have a location name, which allows the game to kep track of where the player is. If it doesn't have a location name, it's some sort of event that could potentially happen anywhere. Player actions are the options the player is presented with in order to progress in the game. You have to give it a description and the game state it will move on to. Game actions are things the game will do when it moves to that state. This is not something the player can choose.
-	// Try adding new states to expand the game!
+	// Next are all the locations and events that happen in the game. They are reprsented by "game states";
+	// Some are locations and so have a location name, which allows the game to kep track of where the player is.
+	// Game states without a location name might be some sort of event that could potentially happen anywhere.
+	// Player actions are the options the player is presented with in order to progress in the game. A game state must have a player action,
+	// even if it just returns you to a start point.
+	// You have to give each game state a description, which will be displayed to the player,
+	// and the game state it will move on to, which can be selected by the player via a dropdown menu.
+	// Game actions are things the game will do when it moves to that state. This is not something the player can choose.
+	
+	// Try defining and adding new states to expand the game! You will have to point to them from existing states if the player is to visit them.
 
-	// gameStates is a JavaScript object - you write them by defining variables inside curly braces.
+	// gameStates is a JavaScript object - you write JavaScript objects by defining variables inside curly braces.
 	// These variables don't need a "let" keyword but you can reassign them.
 	// They are regarded as a special type of variable "belonging" to the object containing them
 	// and are referred to as "properties" of that object.
