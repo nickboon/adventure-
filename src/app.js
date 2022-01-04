@@ -8,7 +8,7 @@
 	const bagSection = document.getElementById('bagSection');
 
 	// define some variables to keep track of the game state
-	// variables are like boxes to store some kind of data in memory.. so they hava a key(name/identifier).
+	// variables STORE some kind of data in memory.. so they hava a key(name/identifier).
 	// once they are declared, you can assign a value you to them. When you see "let" or "const",
 	// it means a variable a varaible has been decared. Const is short for "constant" - once assigned you can't change the value it holds. You can with a variable declared with 'let'.
 	// These once are going to change as the game progresses, so I used 'let':
@@ -43,9 +43,12 @@
 		return currentGameState;
 	}
 
-	// a function to create the options a player can chose from to progress from the current state.
+	// a function to create the actions a player can chose from to progress from the current state.
 	function createPlayerAction(description, getNextState) {
-		return { description, getNextState };
+		return {
+			description: description,
+			getNextState: getNextState,
+		};
 	}
 
 	function createPlaceholder(description) {
@@ -169,7 +172,7 @@
 	}
 
 	// states
-	const player = {}; // we can add properties describing player data here, at a later time -
+	const player = {}; // This is an empty object - we can add properties describing player data here, at a later time -
 	// see hasDrunkCoffee
 
 	// These are all the locations and events that happen in the game.
@@ -183,8 +186,8 @@
 	// Here is an example object:
 	//
 	// const myNewPerson = {
-	//     name: 'Jonathon'
-	//     id: 'Thing 2'
+	//     name: 'Jonathon',
+	//     id: 'Thing 2',
 	//     age: 44
 	// }
 	//
